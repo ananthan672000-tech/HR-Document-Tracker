@@ -41,7 +41,8 @@ option = st.sidebar.radio(
         "Dashboard",
         "Search by Document",
         "Search by Custodian",
-        "Browse Category"
+        "Browse Category",
+        "Add New Document"
     ]
 )
 
@@ -51,7 +52,6 @@ option = st.sidebar.radio(
 if option == "Dashboard":
 
     st.subheader("All Documents")
-
     st.dataframe(df, use_container_width=True)
 
 # -----------------------------
@@ -90,8 +90,7 @@ elif option == "Search by Custodian":
     result = df[df["Custodian"] == custodian]
 
     st.subheader(f"Documents under {custodian}")
-
-    st.success(f"Total Documents : {len(result)}")
+    st.success(f"Total Documents: {len(result)}")
 
     st.dataframe(result, use_container_width=True)
 
@@ -108,3 +107,57 @@ elif option == "Browse Category":
     result = df[df["Category"] == category]
 
     st.dataframe(result, use_container_width=True)
+
+# -----------------------------
+# Add New Document
+# -----------------------------
+elif option == "Add New Document":
+
+    st.subheader("➕ Add New Document")
+
+    with st.form("add_document"):
+
+        doc_id = st.text_input("Document ID")
+        doc_name = st.text_input("Document Name")
+        category = st.text_input("Category")
+        custodian = st.text_input("Custodian")
+        location = st.text_input("Storage Location")
+        retention = st.text_input("Retention")
+        status = st.selectbox(
+            "Status",
+            ["Active", "Archived"]
+        )
+
+        submitted = st.form_submit_button("Save Document")
+
+        if submitted:
+
+            if (
+                doc_id == "" or
+                doc_name == "" or
+                category == "" or
+                custodian == "" or
+                location == "" or
+                retention == ""
+            ):
+                st.error("Please fill all fields.")
+
+            else:
+
+                new_row = pd.DataFrame([{
+                    "Document ID": doc_id,
+                    "Document Name": doc_name,
+                    "Category": category,
+                    "Custodian": custodian,
+                    "Storage Location": location,
+                    "Retention": retention,
+                    "Status": status
+                }])
+
+                df = pd.concat([df, new_row], ignore_index=True)
+
+                df.to_csv("documents.csv", index=False)
+
+                st.success("✅ Document added successfully!")
+
+                st.rerun()
