@@ -1,0 +1,11 @@
+Document ID,Document Name,Category,Custodian,Storage Location,Retention,Status
+DOC001,Training Attendance Register,Training,Sushmitha,Cabinet A - File 1,Permanent,Active
+DOC002,Training Feedback Forms,Training,Sushmitha,Cabinet A - File 2,2 Years,Active
+DOC003,Competency Records,Training,Sushmitha,Cabinet A - File 3,5 Years,Active
+DOC004,Induction Records,HR,Rahul,Cabinet B - File 1,3 Years,Active
+DOC005,QMS Audit Reports,QMS,Rahul,Cabinet C - File 2,5 Years,Active
+DOC006,SHE Audit Reports,SHE,Anjali,Cabinet D - File 1,Permanent,Active
+DOC007,Monthly Performance Review Files,HR,Anjali,Cabinet B - File 3,3 Years,Active
+DOC008,Meeting Minutes,HR,Sushmitha,Cabinet E - File 1,Permanent,Active
+DOC009,Organogram,HR,Rahul,Cabinet F - File 2,Current Version,Active
+DOC010,Bill Verification Files,Finance,Meera,Cabinet G - File 1,7 Years,Active
